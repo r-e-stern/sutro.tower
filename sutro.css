@@ -1,0 +1,127 @@
+body{
+    background-color: white;
+}
+div{
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 50%;
+    min-width: 500px;
+    overflow: hidden;
+    background-image: url("https://ww2.kqed.org/wp-content/uploads/sites/10/2015/06/sutro-in-the-clouds.jpeg");
+}
+nav{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    min-width: 500px;
+    background-color: white;
+    top: 0;
+    text-align: center;
+    bottom: 0;
+    font-family: "Raleway", sans-serif;
+    padding: 10px;
+}
+h1{
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 200;
+    background: -webkit-linear-gradient(-60deg, rgb(89,118,166) 0%, rgb(143,198,228) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    padding: 0px 10px 0px 10px;
+}
+input{
+    color: rgb(115,158,196);
+    outline: none;
+    padding: 3px;
+    font-size: 30px;
+    width: 150px;
+    margin-right: 10px;
+    margin-left: 2px;
+    margin-bottom: 5px;
+    transition: 200ms;
+    border: 1px solid transparent;
+}
+footer{
+    border: 1.5px solid transparent;
+    border-radius: 7px;
+    max-height: 45px;
+}
+footer:hover, footer:focus{
+    border-color: rgb(115,158,196,.5);
+}
+header{
+    margin: auto;
+    text-align: center;
+    display: inline-block;
+}
+input::placeholder{
+    color: rgba(115,158,196,.5)
+}
+em{
+    font-size: 20px;
+    text-transform: uppercase;
+    background: -webkit-linear-gradient(-60deg, rgb(89,118,166) 0%, rgb(143,198,228) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-style: normal;
+    padding-right: 7px;
+}
+span{
+    text-transform: uppercase;
+}
+button{
+    background: -webkit-linear-gradient(-60deg, rgb(89,118,166) 0%, rgb(143,198,228) 100%);
+    color: white;
+    font-weight: 200;
+    outline: none;
+    text-transform: uppercase;
+    padding: 3px 10px 3px 10px;
+    border: 0px solid transparent;
+    font-size: 20px;
+    margin: 0;
+    margin-top: 30px;
+    border-radius: 7px;
+    transition: 200ms;
+}
+button:hover{
+    background: -webkit-linear-gradient(-60deg, rgb(118,166,89) 0%, rgb(198,228,143) 100%);
+}
+img#load{
+    filter: brightness(0);
+    opacity: .2;
+    height: 100px;
+}
+canvas{
+    padding: 5px;
+}
+aside{
+    padding-top: 10px;
+}
+aside span{
+    vertical-align: top;
+    font-size:12px;
+}
+aside i{
+    background: -webkit-linear-gradient(-60deg, rgb(89,118,166) 0%, rgb(143,198,228) 100%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size:50px;
+    vertical-align:top;
+    font-style: normal;
+}
+aside img{
+    height: 50px;
+    opacity: .8;
+    padding: 5px 30px 5px 30px;
+    filter: brightness(0);
+    user-select: none;
+}
+.cling{
+    left: 0;
+    width: 100%;
+}

@@ -25,6 +25,8 @@ $(document).ready(function(){
         if(navigator.geolocation){
             var j = navigator.geolocation.getCurrentPosition(function(p){
                 // console.log(p.coords);
+                $("footer:nth-of-type(1) input").val(p.coords.latitude);
+                $("footer:nth-of-type(2) input").val(0-p.coords.longitude);
                 $.ajax({
                     url: "https://api.open-elevation.com/api/v1/lookup?locations="+p.coords.latitude+","+p.coords.longitude,
                     type: 'GET',

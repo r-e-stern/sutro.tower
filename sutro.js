@@ -14,7 +14,7 @@ $(document).ready(function(){
             crossDomain: true,
             dataType: 'json',
             success: function(result){calc(result)},
-            error: function(){console.log("err")}
+            error: function(){alert("The API returned an error.")}
         });
     });
     $("button#cl").click(function(e){
@@ -24,14 +24,14 @@ $(document).ready(function(){
         $(this).off();
         if(navigator.geolocation){
             var j = navigator.geolocation.getCurrentPosition(function(p){
-                console.log(p.coords);
+                // console.log(p.coords);
                 $.ajax({
-                    url: "https://api.open-elevation.com/api/v1/lookup?locations="+p.coords.latitude+",-"+(0-p.coords.longitude),
+                    url: "https://api.open-elevation.com/api/v1/lookup?locations="+p.coords.latitude+","+p.coords.longitude,
                     type: 'GET',
                     crossDomain: true,
                     dataType: 'json',
                     success: function(result){calc(result)},
-                    error: function(){console.log("err")}
+                    error: function(){alert("The API returned an error.")}
                 });
             });
         }else{

@@ -74,7 +74,7 @@ em{
 span{
     text-transform: uppercase;
 }
-button{
+button, a{
     background: -webkit-linear-gradient(-60deg, rgb(89,118,166) 0%, rgb(143,198,228) 100%);
     color: white;
     font-weight: 200;
@@ -87,8 +87,9 @@ button{
     margin-top: 30px;
     border-radius: 7px;
     transition: 200ms;
+    text-decoration: none;
 }
-button:hover{
+button:hover, a:hover{
     background: -webkit-linear-gradient(-60deg, rgb(118,166,89) 0%, rgb(198,228,143) 100%);
 }
 img#load{

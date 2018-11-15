@@ -1,13 +1,13 @@
 $(document).ready(function(){
     fixCling();
-    $("button").click(function(e){
+    $("button#tb").click(function(e){
         e.stopPropagation();
         $("input").prop('disabled', true);
         $(this).before("<br/><img id='load' src='https://raw.githubusercontent.com/r-e-stern/itunes.api.search/master/Rolling.gif'><br/>")
         $(this).off();
         var n = $("footer:nth-of-type(1) input").val();
         var w = $("footer:nth-of-type(2) input").val();
-        console.log(n,w);
+        // console.log(n,w);
         $.ajax({
             url: "https://api.open-elevation.com/api/v1/lookup?locations="+n+",-"+w,
             type: 'GET',
@@ -16,6 +16,28 @@ $(document).ready(function(){
             success: function(result){calc(result)},
             error: function(){console.log("err")}
         });
+    });
+    $("button#cl").click(function(e){
+        e.stopPropagation();
+        $("input").prop('disabled', true);
+        $(this).before("<br/><img id='load' src='https://raw.githubusercontent.com/r-e-stern/itunes.api.search/master/Rolling.gif'><br/>")
+        $(this).off();
+        if(navigator.geolocation){
+            var j = navigator.geolocation.getCurrentPosition(function(p){
+                console.log(p.coords);
+                $.ajax({
+                    url: "https://api.open-elevation.com/api/v1/lookup?locations="+p.coords.latitude+",-"+(0-p.coords.longitude),
+                    type: 'GET',
+                    crossDomain: true,
+                    dataType: 'json',
+                    success: function(result){calc(result)},
+                    error: function(){console.log("err")}
+                });
+            });
+        }else{
+            alert("Location functionality is not available and/or allowed on your device.");
+            $("img#load").remove();
+        }
     });
     $(window).resize(fixCling)
 });
@@ -33,15 +55,16 @@ function vertAngle(d,e){
     return 90-Math.atan(o/d)*180;
 }
 function calc(result){
-    console.log("d: "+calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"m");
-    console.log("e: "+result.results[0].elevation+"m");
-    console.log("Ѳ: "+vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528),result.results[0].elevation)+"°");
-    console.log("b: "+calculateBearing(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"°");
+    // console.log("d: "+calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"m");
+    // console.log("e: "+result.results[0].elevation+"m");
+    // console.log("Ѳ: "+vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528),result.results[0].elevation)+"°");
+    // console.log("b: "+calculateBearing(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"°");
     var th = vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528),result.results[0].elevation);
     var br = calculateBearing(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528);
     var rt = (180+Math.round(br,0))%360;
     $("img#load, header > br, button").remove();
     $("header").append("<aside><canvas id='can' width='100' height='50'></canvas><span><i>"+Math.round(th,0)+"°</i><br>with the ground</span></aside>");
+    $("nav").append("<br/><br/><a href='.'>New Search</a>")
     var canvas = document.getElementById("can");
     var context = canvas.getContext('2d');
     context.fillStyle = "#000000";

@@ -89,9 +89,6 @@ button, a{
     transition: 200ms;
     text-decoration: none;
 }
-button:hover, a:hover{
-    background: -webkit-linear-gradient(-60deg, rgb(118,166,89) 0%, rgb(198,228,143) 100%);
-}
 img#load{
     filter: brightness(0);
     opacity: .2;
@@ -168,4 +165,7 @@ main#chi:hover{
     background-image: url("https://static.thenounproject.com/png/1336252-200.png");
     top:0;
     left: -3.5px;
+}
+button:hover, a:hover{
+    background: -webkit-linear-gradient(-60deg, rgb(118,166,89) 0%, rgb(198,228,143) 100%);
 }

@@ -1,3 +1,6 @@
+var SUTRO_LAT = 37.7552;
+var SUTRO_LONG = -122.4528;
+var SUTRO_HEIGHT = 274 + 298;
 $(document).ready(function(){
     fixCling();
     $("button#tb").click(function(e){
@@ -41,7 +44,18 @@ $(document).ready(function(){
             $("img#load").remove();
         }
     });
-    $(window).resize(fixCling)
+    $(window).resize(fixCling);
+    $("main").click(function(){
+        SUTRO_LAT = 41.8789;
+        SUTRO_LONG = -87.6359;
+        SUTRO_HEIGHT = 527 + 181;
+        $("#n input").attr("placeholder",SUTRO_LAT);
+        $("#w input").attr("placeholder",SUTRO_LONG);
+        $("body").addClass("chicago");
+        $(this).off("click").click(function(){
+            location.reload();
+        });
+    });
 });
 function fixCling(){
     if($(window).width() <= 882){
@@ -50,19 +64,14 @@ function fixCling(){
         $("nav").removeClass("cling");
     }
 }
-function vertAngle(d,e){
+function vertAngle(d,e,h){
     if(d==0){return 0}
-    var SUTRO_HEIGHT = 274 + 298;
-    var o = SUTRO_HEIGHT-e;
+    var o = h-e;
     return 90-Math.atan(o/d)*180;
 }
 function calc(result){
-    // console.log("d: "+calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"m");
-    // console.log("e: "+result.results[0].elevation+"m");
-    // console.log("Ѳ: "+vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528),result.results[0].elevation)+"°");
-    // console.log("b: "+calculateBearing(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528)+"°");
-    var th = vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528),result.results[0].elevation);
-    var br = calculateBearing(result.results[0].latitude,result.results[0].longitude,37.7552,-122.4528);
+    var th = vertAngle(calculateDistance(result.results[0].latitude,result.results[0].longitude,SUTRO_LAT,SUTRO_LONG),result.results[0].elevation,SUTRO_HEIGHT);
+    var br = calculateBearing(result.results[0].latitude,result.results[0].longitude,SUTRO_LAT,SUTRO_LONG);
     var rt = (180+Math.round(br,0))%360;
     $("img#load, header > br, button").remove();
     $("header").append("<aside><canvas id='can' width='100' height='50'></canvas><span><i>"+Math.round(th,0)+"°</i><br>with the ground</span></aside>");
